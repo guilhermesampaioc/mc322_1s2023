@@ -1,25 +1,27 @@
 package Lab_2;
 
+import java.util.Scanner;
+
 public class Seguradora {
 	
+	// declaração das variáveis
 	private String nome ;
     private String telefone ;
 	private String email ;
 	private String endereco ;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-    
-	public Seguradora ( String nome , String telefone , String email , String endereco ) {
-		 this.nome = nome ;
-		 this.telefone = telefone ;
-		 this.email = email ;
-	     this.endereco = endereco ;
+    // construtor da classe
+	public Seguradora () {
+		Scanner ler = new Scanner(System.in);
+			
+		this.telefone = ler.next();
+		this.nome = ler.next();
+		this.email = ler.next();
+		this.endereco = ler.next();		
 	}
 
 	 // Getters e setters
+	
 	 public String getNome () {
 	    return nome ;
      }
