@@ -46,6 +46,8 @@ public class Sinistro {
 	}
 		
 	public void geradorId() {
+		Random gerador = new Random();
+		this.id = gerador.nextInt();
 	}
 
 }
