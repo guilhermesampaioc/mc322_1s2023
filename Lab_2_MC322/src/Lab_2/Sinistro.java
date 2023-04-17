@@ -7,7 +7,7 @@ public class Sinistro {
 	// declarações das variáveis
 	private int id;
 	private String data ;
-	private String endereco ;
+	private String endereco;
 	
 	// construtor da classe
 	public Sinistro () {
