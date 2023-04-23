@@ -1,5 +1,6 @@
 package lab3;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ClientePF extends Cliente {
@@ -10,24 +11,37 @@ public class ClientePF extends Cliente {
 	 private String classeEconomica;
 	 private String genero;
 	 private String educacao;
-	 private final String cpf;
+	 private String tipoCliente;
+	 public final String cpf;
 	
 	 public ClientePF ( String nome , String endereco , String dataLicenca ,
-	 String educacao , String genero , String classeEconomica ,
-	 Veiculo listaVeiculos[], String cpf , String dataNascimento ) {
+	 String educacao , String genero , String classeEconomica , String cpf , String dataNascimento, String tipoCliente ) {
 		 
 		 // chama o construtor da superclasse
-		 super();
+		 super (nome , endereco, tipoCliente);
 		 
-		 Scanner ler = new Scanner(System.in);
-		 this.genero = ler.next();
-		 this.dataLicenca = ler.next();
-		 this.classeEconomica = ler.next();
-		 this.educacao = ler.next();
-		 this.cpf = ler.next();
+		 this.cpf = confirmarCPF(cpf);
+		 this.dataNascimento = dataNascimento ;
+		 this.classeEconomica = classeEconomica;
+		 this.dataLicenca = dataLicenca;
+		 this.genero = genero;
+		 this.educacao = educacao;
+		 this.tipoCliente = tipoCliente;
 	 }
 
 	 // Getters e setters
+	 
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public String getTipoCliente() {
+		return tipoCliente;
+	}
+	 
+	 public void setTipoCliente(String tipoCLiente) {
+		this.tipoCliente = tipoCliente;
+	}
 	 
 	public String getDataNascimento () {
 		return dataNascimento;
@@ -69,23 +83,16 @@ public class ClientePF extends Cliente {
 		this.educacao = educacao ;		
 	}
 	 
-	 public String toString(String var) {
-		var = var.toString();
-		return var;
-	}
-	 
+	// valida se os dígitos do CPF não são todos iguais
 	public boolean validarDigitos(String nome) {
 		boolean flag = true;
 		char caractere = nome.charAt(0);
 		for (int i = 0; i < nome.length(); i++) {
 			if (caractere == nome.charAt(i)){
-	            System.out.println("Você não pode adicionar ao texto interrogação.");
-	            flag = true;
-	        } else {
-	            System.out.println("Você não pode adicionar ao texto espaços.");
-	            caractere = nome.charAt(i);
 	            flag = false;
-	            break;
+	        } else {
+	        	flag = true;
+	        	break;
 	        }
 	    }
 		return flag;
@@ -102,6 +109,27 @@ public class ClientePF extends Cliente {
 			var = false;
 		}
 		return var;
+	}
+	
+	// confirma a validade do CPF, isto é, se o mesmo tem 11 dígitos e se não tem todos os dígitos iguais
+	public String confirmarCPF(String cpf) {
+		String cpf_mom = cpf;
+		 
+		 while (!validarCpf(cpf_mom)) {
+				System.out.println("CPF inválido, digite novamente, por favor:");
+				Scanner ler = new Scanner(System.in);
+				cpf_mom = ler.next();
+		}
+		 
+		return cpf_mom;
+	}
+	
+	@Override
+	// define o formato para impressão dos sinistros
+	public String toString() {
+		return ("Nome do cliente: " + this.nome + "\nData de nascimento: " + this.dataNascimento + "\nEndereço: " + this.endereco + "\nData de licença: " + this.dataLicenca +
+				"\nClasse econômica: " + this.classeEconomica + "\nGênero com o qual o cliente se identifica: " + this.genero + "\nNível de ensino: " +
+				this.educacao + "\nCPF do cliente: " + this.cpf + "\n");
 	}
 	
 }

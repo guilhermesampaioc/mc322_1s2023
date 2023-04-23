@@ -5,28 +5,29 @@ import java.util.Scanner;
 public class Sinistro {
 	
 	// declarações das variáveis
-	private int id;
+	private final int id;
 	private String data ;
-	private String endereco ;
+	private String endereco;
+	private String seguradora;
+	private String veiculo;
+	private String cliente;
 	
 	// construtor da classe
-	public Sinistro () {
-		Scanner ler = new Scanner(System.in);
-			
-		this.data = ler.next();
-		this.endereco = ler.next();
+	public Sinistro (String data, String endereco, String seguradora, String veiculo, String cliente) {
 		
-		geradorId();
+		this.data = data;
+		this.endereco = endereco;
+		this.seguradora = seguradora; 
+		this.veiculo = veiculo;
+		this.cliente = cliente;
+		
+		this.id = geradorId();
 	}
 
 	 // Getters e setters
-	
-	public int getId () {
-	    return id;
-   }
-	 
-	public void setId ( int id ) {
-		this.id = id ;
+
+	public int getID() {
+		return id;
 	}
 	
 	public String getData () {
@@ -36,6 +37,14 @@ public class Sinistro {
 	public void setData ( String data ) {
 		this.data = data ;
 	}
+	
+	public String getCliente () {
+		return cliente ;
+	}
+	
+	public void setCliente ( String cliente ) {
+		this.cliente = cliente ;
+	}
   
 	public String getEndereco () {
 		return endereco ;
@@ -44,10 +53,33 @@ public class Sinistro {
 	public void setEndereco ( String endereco ) {
 		this.endereco = endereco ;
 	}
-		
-	public void geradorId() {
+	
+	public String getSeguradora () {
+		return seguradora ;
+	}
+	
+	public void setSeguradora ( String seguradora ) {
+		this.seguradora = seguradora ;
+	}
+	
+	public String getVeiculo () {
+		return veiculo ;
+	}
+	
+	public void setVeiculo ( String veiculo ) {
+		this.veiculo = veiculo ;
+	}
+	
+	// função que gera um identificador específico para cada sinistro
+	public int geradorId() {
 		Random gerador = new Random();
-		this.id = gerador.nextInt();
+		int id = gerador.nextInt();
+		return id;
 	}
 
+	// função que define o formato em que os sinistros serão impressos
+	public String toString() {
+		return ("Sinistro número " + this.id + "\nO incidente ocorreu em " + this.data + ", no endereço " + this.endereco + ", será resguardado pela seguradora " + this.seguradora + " e ocorreu com o veículo "
+				+ this.veiculo + ".");
+	}
 }

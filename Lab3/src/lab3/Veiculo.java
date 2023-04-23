@@ -1,7 +1,5 @@
 package lab3;
 
-import java.util.Scanner;
-
 public class Veiculo {
 	
 	// declaração das variáveis
@@ -11,13 +9,12 @@ public class Veiculo {
 	private int anoFabricacao;
 	
 	// construtor da classe
-	public Veiculo () {
-		Scanner ler = new Scanner(System.in);
+	public Veiculo (String placa, String marca, String modelo, int anoFabricacao) {
 		
-		this.placa = ler.next();
-		this.marca = ler.next();
-		this.modelo = ler.next();
-		this.anoFabricacao = ler.nextInt();
+		this.placa = placa;
+		this.marca = marca;
+		this.modelo = modelo;
+		this.anoFabricacao = anoFabricacao;
 	}
 
 	 // Getters e setters
@@ -52,6 +49,12 @@ public class Veiculo {
 	
 	public void setAnoFabricacao ( int anoFabricacao ) {
 	    this.anoFabricacao = anoFabricacao ;
+	}
+	
+	// função que define o formato em que os veículos dos cliente serão impressos
+	public String toString() {
+		return ("O veículo tem a placa " + this.placa + ", o mesmo é da marca " + this.marca + ", é do modelo "
+				+ this.modelo + " e foi fabricado no ano " + this.anoFabricacao + ".");
 	}
 
 }
